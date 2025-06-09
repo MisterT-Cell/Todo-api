@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     normalizationContext: ['groups' => ['todo:read']],
     denormalizationContext: ['groups' => ['todo:write']],
 )]
+
 class Todos
 {
     #[ORM\Id]
@@ -24,7 +25,7 @@ class Todos
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Titel mag niet leeg zijn.')]
     #[Groups(['todo:read', 'todo:write'])]
-    private ?string $title = null;
+    private ?string $title;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['todo:read', 'todo:write'])]
@@ -32,7 +33,7 @@ class Todos
 
     #[ORM\Column(type: Types::BOOLEAN)]
     #[Groups(['todo:read', 'todo:write'])]
-    private ?bool $finished = null;
+    private ?bool $finished;
 
     public function getId(): ?int
     {

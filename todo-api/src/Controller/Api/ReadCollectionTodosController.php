@@ -6,7 +6,7 @@ use App\Entity\Todos;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annortation\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/todos', name: 'read_collection_todos', methods: ['GET'])]
 

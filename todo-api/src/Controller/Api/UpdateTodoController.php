@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/api/todos/{id}', name: 'api_update_todo', methods: ['PUT, PATCH'])]
+#[Route('/api/todos/{id}', name: 'api_update_todo', methods: ['PUT', 'PATCH'])]
 class UpdateTodoController extends AbstractController
 {
     public function __invoke(int $id, Request $request, EntityManagerInterface $em): JsonResponse
@@ -34,6 +34,7 @@ class UpdateTodoController extends AbstractController
 
         $em->flush();
 
-        return $this->json($todo);
+        return $this->json($todo, 200, [], ['groups' => 'todo:read']);
+
     }
 }
