@@ -109,9 +109,11 @@ class TodoController extends AbstractController {
         return $this->json($todo, 200, [], ['groups' => 'todo:read']);
     }
 
-    #[Route('/api/todos/{id}', name: 'delete_todo', methods: ['DELETE'])]
+    #[Route('/{id}', name: 'delete_todo', methods: ['DELETE'])]
      public function delete(int $id, EntityManagerInterface $em): JsonResponse
     {
+        dd('controller werkt');
+
         $todo = $em->getRepository(Todos::class)->find($id);
 
         if (!$todo) {
@@ -121,6 +123,6 @@ class TodoController extends AbstractController {
         $em->remove($todo);
         $em->flush();
 
-        return JsonResponse(['message' => 'Todo deleted successfully'], 200);
+        return new JsonResponse(['message' => 'Todo deleted successfully'], 200);
     }
 }
